@@ -10,7 +10,8 @@ public class CustomerController(
     ICreateCustomerUseCase createCustomerUseCase,
     IGetCustomerUseCase getCustomerUseCase,
     IUpdateCustomerUseCase updateCustomerUseCase,
-    IDeleteCustomerUseCase deleteCustomerUseCase)
+    IDeleteCustomerUseCase deleteCustomerUseCase,
+    ILogger<CustomerController> logger)
     : MainController
 {
     [HttpPost]
@@ -37,8 +38,8 @@ public class CustomerController(
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] QueryCustomerDto query)
     {
-        var pagedItems = await getCustomerUseCase.ListAsync(query);
-        return Ok(pagedItems);
+        logger.LogInformation("GetList");
+        return Ok();
     }
 
     [HttpPut("{id}")]

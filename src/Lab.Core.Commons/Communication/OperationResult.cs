@@ -30,13 +30,11 @@ public class OperationResult : IOperationResult
     }
 
     public void AddErrors(Dictionary<string, string> errors)
-
     {
         foreach (var error in errors) _errors.Add(error.Key, error.Value);
     }
 
     public void ClearErrors()
-
     {
         _errors.Clear();
     }

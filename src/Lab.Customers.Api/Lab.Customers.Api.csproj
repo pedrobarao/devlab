@@ -20,6 +20,7 @@
     <ItemGroup>
         <ProjectReference Include="..\Lab.Customers.Application\Lab.Customers.Application.csproj"/>
         <ProjectReference Include="..\Lab.Customers.Infra\Lab.Customers.Infra.csproj"/>
+        <ProjectReference Include="..\Lab.Customers.Telemetry\Lab.Customers.Telemetry.csproj"/>
         <ProjectReference Include="..\Lab.WebApi.Core\Lab.WebApi.Core.csproj"/>
     </ItemGroup>
 
