@@ -27,9 +27,4 @@ public class ApplicationInsightsExporter(string instrumentationKey) : IApmExport
         return builder
             .AddAzureMonitorMetricExporter(o => o.ConnectionString = $"InstrumentationKey={_instrumentationKey}");
     }
-
-    // public OpenTelemetryLoggerOptions AddExporter(OpenTelemetryLoggerOptions options)
-    // {
-    //     return options.AddApplicationInsights(_instrumentationKey);
-    // }
 }

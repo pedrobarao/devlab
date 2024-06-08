@@ -3,6 +3,7 @@
 using Lab.Customers.Api.Config;
 using Lab.Customers.Telemetry.Config;
 using Lab.Customers.Telemetry.Exporters;
+using Lab.Customers.Telemetry.Loggers;
 
 #endregion
 
@@ -12,7 +13,8 @@ builder.Services.AddApiConfig(builder.Configuration);
 builder.AddTelemetry(options =>
 {
     //options.ServiceName = "NomeQualquer";
-    //options.AddApmExporter(new ApplicationInsightsExporter(""));
+    // options.AddApmExporter(new ApplicationInsightsExporter(""));
+    // options.AddLogExporter(new ApplicationInsightsLogger(""));
 });
 var app = builder.Build();
 
