@@ -25,7 +25,7 @@ public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCu
 
     public async Task<PagedResult<CustomerDto>> ListAsync(QueryCustomerDto query)
     {
-        var pagedCustomers = await customerRepository.ListPagedAsync(query.PageSize, query.PageIndex, query.Query);
+        var pagedCustomers = await customerRepository.ListPagedAsync(query.PageSize, query.PageIndex, query.Filter);
 
         var pagedCustomersDto = pagedCustomers.MapItems(p => new CustomerDto
         {

@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using Lab.Customers.Application.DTOs.Inputs;
 using Lab.Customers.Application.Interfaces;
 using Lab.WebApi.Core.Controllers;
@@ -38,8 +39,14 @@ public class CustomerController(
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] QueryCustomerDto query)
     {
-        logger.LogInformation("GetList");
-        return Ok();
+        using var activity = Activity.Current;
+
+        activity?.SetTag("query.Filter", query.Filter);
+        var result = await getCustomerUseCase.ListAsync(query);
+
+        if (result.Items.Any()) activity?.AddEvent(new ActivityEvent("Customer list not found."));
+
+        return Ok(result);
     }
 
     [HttpPut("{id}")]
@@ -57,7 +64,6 @@ public class CustomerController(
 
         return NoContent();
     }
-
 
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
