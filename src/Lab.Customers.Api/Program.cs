@@ -1,7 +1,5 @@
 using Lab.Customers.Api.Config;
 using Lab.Customers.Infra.Telemetry.Config;
-using Lab.Customers.Infra.Telemetry.Exporters;
-using Lab.Customers.Infra.Telemetry.Loggers;
 
 var builder = WebApplication.CreateBuilder(args);
 

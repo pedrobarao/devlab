@@ -49,7 +49,7 @@ public abstract class MainController : ControllerBase
     {
         if (result is null || !result.GetErrors().Any()) return false;
 
-        foreach (var message in result.GetErrors().Values) AddError(message);
+        foreach (var message in result.GetErrors()) AddError(message);
 
         return true;
     }
@@ -64,9 +64,9 @@ public abstract class MainController : ControllerBase
         Errors.Add(erro);
     }
 
-    protected void AddErrors(IReadOnlyDictionary<string, string> errors)
+    protected void AddErrors(IEnumerable<string> errors)
     {
-        foreach (var error in errors) AddError(error.Value);
+        foreach (var error in errors) AddError(error);
     }
 
     protected void ClearErrors()

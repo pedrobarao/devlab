@@ -6,7 +6,7 @@ public class ValidationResult
     {
         Errors = errors ?? Enumerable.Empty<string>();
     }
-    
+
     public IEnumerable<string> Errors { get; }
     public bool IsValid => !Errors.Any();
 }

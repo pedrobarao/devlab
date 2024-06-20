@@ -1,12 +1,26 @@
 ﻿using Lab.Core.Commons.Communication;
 using Lab.Customers.Application.Interfaces;
+using Lab.Customers.Domain.Repositories;
 
 namespace Lab.Customers.Application.UseCases;
 
-public class DeleteCustomerUseCase : IDeleteCustomerUseCase
+public class DeleteCustomerUseCase(ICustomerRepository customerRepository) : IDeleteCustomerUseCase
 {
+    public IOperationResult OperationResult { get; } = new OperationResult();
+
     public async Task<IOperationResult> Execute(Guid id)
     {
-        throw new NotImplementedException();
+        var customer = await customerRepository.GetByIdAsync(id);
+
+        if (customer is null)
+        {
+            OperationResult.AddError("Customer not found.");
+            return OperationResult;
+        }
+
+        customerRepository.Delete(customer);
+        await customerRepository.UnitOfWork.Commit();
+
+        return OperationResult;
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Lab.Customers.Infra.Telemetry.Interfaces;
+﻿using Lab.Customers.Infra.Telemetry.Interfaces;
 
 namespace Lab.Customers.Infra.Telemetry.Config;
 

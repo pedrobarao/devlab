@@ -1,10 +1,15 @@
-﻿namespace Lab.Core.Commons.UseCases;
+﻿using Lab.Core.Commons.Communication;
+
+namespace Lab.Core.Commons.UseCases;
 
 public interface IUseCase<TRequest>
 {
-    Task Execute(TRequest request);
+    IOperationResult OperationResult { get; }
+    Task<IOperationResult> Execute(TRequest request);
 }
+
 public interface IUseCase<TRequest, TResult>
 {
-    Task<TResult> Execute(TRequest request);
+    IOperationResult<TResult> OperationResult { get; }
+    Task<IOperationResult<TResult>> Execute(TRequest request);
 }

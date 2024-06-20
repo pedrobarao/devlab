@@ -1,7 +1,6 @@
 ﻿using Azure.Monitor.OpenTelemetry.Exporter;
 using Lab.Customers.Infra.Telemetry.Interfaces;
 using OpenTelemetry.Metrics;
-using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
 namespace Lab.Customers.Infra.Telemetry.Exporters;

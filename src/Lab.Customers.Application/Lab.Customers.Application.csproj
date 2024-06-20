@@ -8,20 +8,20 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lab.Customers.Domain\Lab.Customers.Domain.csproj" />
-        <ProjectReference Include="..\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj" />
+        <ProjectReference Include="..\Lab.Customers.Domain\Lab.Customers.Domain.csproj"/>
+        <ProjectReference Include="..\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="Mappings\**" />
+        <Compile Remove="Mappings\**"/>
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Remove="Mappings\**" />
+        <EmbeddedResource Remove="Mappings\**"/>
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Mappings\**" />
+        <None Remove="Mappings\**"/>
     </ItemGroup>
 
 </Project>

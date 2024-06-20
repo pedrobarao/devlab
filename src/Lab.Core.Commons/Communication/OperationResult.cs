@@ -1,16 +1,20 @@
-﻿namespace Lab.Core.Commons.Communication;
+﻿using Lab.Core.Commons.Specifications;
+
+namespace Lab.Core.Commons.Communication;
 
 public interface IOperationResult
 {
-    void AddError(string key, string value);
+    void AddError(string error);
 
-    void AddErrors(Dictionary<string, string> errors);
+    void AddErrors(ValidationResult validationResult);
+
+    void AddErrors(IEnumerable<string> errors);
 
     void ClearErrors();
 
     bool HasErrors();
 
-    Dictionary<string, string> GetErrors();
+    IEnumerable<string> GetErrors();
 }
 
 public interface IOperationResult<TData> : IOperationResult
@@ -22,16 +26,21 @@ public interface IOperationResult<TData> : IOperationResult
 
 public class OperationResult : IOperationResult
 {
-    private readonly Dictionary<string, string> _errors = new();
+    private readonly List<string> _errors = new();
 
-    public void AddError(string key, string value)
+    public void AddError(string error)
     {
-        _errors.Add(key, value);
+        _errors.Add(error);
     }
 
-    public void AddErrors(Dictionary<string, string> errors)
+    public void AddErrors(ValidationResult validationResult)
     {
-        foreach (var error in errors) _errors.Add(error.Key, error.Value);
+        foreach (var error in validationResult.Errors) _errors.Add(error);
+    }
+
+    public void AddErrors(IEnumerable<string> errors)
+    {
+        foreach (var error in errors) _errors.Add(error);
     }
 
     public void ClearErrors()
@@ -44,7 +53,7 @@ public class OperationResult : IOperationResult
         return _errors.Count > 0;
     }
 
-    public Dictionary<string, string> GetErrors()
+    public IEnumerable<string> GetErrors()
     {
         return _errors;
     }
@@ -54,7 +63,7 @@ public class OperationResult<TData> : OperationResult, IOperationResult<TData>
 {
     private TData _data;
 
-    public OperationResult(TData data)
+    public OperationResult(TData data = default)
     {
         _data = data;
     }

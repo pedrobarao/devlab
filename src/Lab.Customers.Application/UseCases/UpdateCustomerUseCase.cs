@@ -6,8 +6,10 @@ namespace Lab.Customers.Application.UseCases;
 
 public class UpdateCustomerUseCase : IUpdateCustomerUseCase
 {
+    public IOperationResult OperationResult { get; } = new OperationResult();
+
     public async Task<IOperationResult> Execute(UpdateCustomerDto updateCustomer)
     {
-        throw new NotImplementedException();
+        return OperationResult;
     }
 }

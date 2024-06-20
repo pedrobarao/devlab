@@ -1,4 +1,4 @@
-﻿using Lab.Core.Commons.Validators;
+﻿using Lab.Core.Commons.Specifications;
 using Lab.Customers.Domain.Entities;
 
 namespace Lab.Customers.Domain.Specifications;
@@ -7,8 +7,8 @@ public class CustomerLegalAgeSpec : ISpecification<Customer>
 {
     public bool IsSatisfiedBy(Customer entity)
     {
-        return entity.BirthDate.Date <= DateTime.Now.Date.AddYears(-18);
+        return entity.BirthDate.ToDateTime(TimeOnly.MinValue) <= DateTime.Now.AddYears(-18);
     }
 
-    public string ErrorMessage => "Error message here";
+    public string ErrorMessage => "Customer must be of legal age";
 }

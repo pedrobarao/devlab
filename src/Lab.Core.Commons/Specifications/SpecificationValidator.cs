@@ -1,6 +1,4 @@
-﻿using Lab.Core.Commons.Validators;
-
-namespace Lab.Core.Commons.Specifications;
+﻿namespace Lab.Core.Commons.Specifications;
 
 public abstract class SpecificationValidator<TEntity> where TEntity : class
 {
@@ -8,9 +6,7 @@ public abstract class SpecificationValidator<TEntity> where TEntity : class
 
     public ValidationResult Validate(TEntity entity)
     {
-        //_specifications.All(spec => spec.IsSatisfiedBy(entity));
         var errorMessages = GetErrors(entity);
-
         return new ValidationResult(errorMessages);
     }
 
@@ -21,7 +17,7 @@ public abstract class SpecificationValidator<TEntity> where TEntity : class
             .Select(spec => spec.ErrorMessage);
     }
 
-    public void Add(ISpecification<TEntity> spec)
+    protected void Add(ISpecification<TEntity> spec)
     {
         _specifications.Add(spec);
     }

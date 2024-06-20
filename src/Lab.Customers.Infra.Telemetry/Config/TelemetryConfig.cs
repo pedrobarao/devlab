@@ -1,11 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
-using System.Reflection;
 
 namespace Lab.Customers.Infra.Telemetry.Config;
 
@@ -18,7 +18,8 @@ public static class TelemetryConfig
         configureOptions(options);
 
 
-        if (string.IsNullOrEmpty(options.ServiceName)) options.ServiceName = Assembly.GetEntryAssembly()?.GetName().Name ?? "unknow_service";
+        if (string.IsNullOrEmpty(options.ServiceName))
+            options.ServiceName = Assembly.GetEntryAssembly()?.GetName().Name ?? "unknow_service";
 
         builder.Services.AddSingleton(options);
 
@@ -31,23 +32,23 @@ public static class TelemetryConfig
 
             foreach (var logExporter in options.LogExporters) otelLogging = logExporter.AddExporter(otelLogging);
         });
-        
+
         builder.Services.AddOpenTelemetry()
-        .ConfigureResource(resource => resource.AddService(options.ServiceName))
-        .WithTracing(tracing =>
-        {
-            tracing.AddAspNetCoreInstrumentation();
-            tracing.AddHttpClientInstrumentation();
-            tracing.AddConsoleExporter();
-            foreach (var apmExporter in options.ApmExporters) tracing = apmExporter.AddExporter(tracing);
-        })
-        .WithMetrics(metrics =>
-        {
-            metrics.AddAspNetCoreInstrumentation();
-            metrics.AddHttpClientInstrumentation();
-            metrics.AddConsoleExporter();
-            foreach (var apmExporter in options.ApmExporters) metrics = apmExporter.AddExporter(metrics);
-        });
+            .ConfigureResource(resource => resource.AddService(options.ServiceName))
+            .WithTracing(tracing =>
+            {
+                tracing.AddAspNetCoreInstrumentation();
+                tracing.AddHttpClientInstrumentation();
+                tracing.AddConsoleExporter();
+                foreach (var apmExporter in options.ApmExporters) tracing = apmExporter.AddExporter(tracing);
+            })
+            .WithMetrics(metrics =>
+            {
+                metrics.AddAspNetCoreInstrumentation();
+                metrics.AddHttpClientInstrumentation();
+                metrics.AddConsoleExporter();
+                foreach (var apmExporter in options.ApmExporters) metrics = apmExporter.AddExporter(metrics);
+            });
 
         return builder;
     }

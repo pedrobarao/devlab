@@ -1,7 +1,7 @@
-﻿namespace Lab.Core.Commons.Validators;
+﻿namespace Lab.Core.Commons.Specifications;
 
 public interface ISpecification<TEntity> where TEntity : class
 {
-    bool IsSatisfiedBy(TEntity entity);
     string ErrorMessage { get; }
+    bool IsSatisfiedBy(TEntity entity);
 }

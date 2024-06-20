@@ -7,6 +7,8 @@ namespace Lab.Customers.Application.UseCases;
 
 public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCustomerUseCase
 {
+    public IOperationResult<CustomerDto?> OperationResult { get; }
+
     public async Task<IOperationResult<CustomerDto?>> Execute(Guid id)
     {
         var customers = await customerRepository.GetByIdAsync(id);

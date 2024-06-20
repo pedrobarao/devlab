@@ -3,10 +3,12 @@ using Lab.Customers.Domain.Entities;
 
 namespace Lab.Customers.Domain.Specifications.Validators;
 
-public class CustomerLegalAgeValidator : SpecificationValidator<Customer>
+public class CustomerValidator : SpecificationValidator<Customer>
 {
-    public CustomerLegalAgeValidator()
+    public CustomerValidator()
     {
         Add(new CustomerLegalAgeSpec());
+        Add(new CustomerCpfSpec());
+        Add(new CustomerFullNameSpec());
     }
 }
