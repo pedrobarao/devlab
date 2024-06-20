@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Lab.Customers.Application.DTOs.Inputs;
 using Lab.Customers.Application.Interfaces;
 using Lab.WebApi.Core.Controllers;
