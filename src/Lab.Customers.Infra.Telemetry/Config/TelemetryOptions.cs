@@ -1,11 +1,11 @@
 ﻿using System.Reflection;
-using Lab.Customers.Telemetry.Interfaces;
+using Lab.Customers.Infra.Telemetry.Interfaces;
 
-namespace Lab.Customers.Telemetry.Config;
+namespace Lab.Customers.Infra.Telemetry.Config;
 
 public class TelemetryOptions
 {
-    public string ServiceName { get; set; } = Assembly.GetCallingAssembly().GetName().Name!;
+    public string ServiceName { get; set; } = Assembly.GetEntryAssembly()?.GetName().Name!;
     public List<IApmExporter> ApmExporters { get; } = new();
     public List<ILogExporter> LogExporters { get; } = new();
 

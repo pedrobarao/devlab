@@ -1,7 +1,7 @@
 ﻿using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Lab.Customers.Telemetry.Interfaces;
+namespace Lab.Customers.Infra.Telemetry.Interfaces;
 
 public interface IApmExporter
 {

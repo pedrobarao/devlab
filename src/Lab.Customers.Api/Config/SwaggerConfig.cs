@@ -15,6 +15,7 @@ public static class SwaggerConfig
         {
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseReDoc(options => { options.RoutePrefix = "docs"; });
         }
 
         return app;

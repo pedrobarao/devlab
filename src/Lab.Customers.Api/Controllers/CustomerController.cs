@@ -39,18 +39,8 @@ public class CustomerController(
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] QueryCustomerDto query)
     {
-        using var activity = Activity.Current;
-        activity?.AddEvent(new ActivityEvent("Customer list not found."));
-        logger.LogInformation("Testando OpenTelemetry");
-
-        //activity?.SetTag("query.Filter", query.Filter);
-        //var result = await getCustomerUseCase.ListAsync(query);
-
-        //if (result.Items.Any()) activity?.AddEvent(new ActivityEvent("Customer list not found."));
-
-        //return Ok(result);
-
-        return Ok();
+        var result = await getCustomerUseCase.ListAsync(query);
+        return Ok(result);
     }
 
     [HttpPut("{id}")]

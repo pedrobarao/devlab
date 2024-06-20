@@ -39,7 +39,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Customers.Application.T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Customers.Domain.Test", "test\Lab.Customers.Domain.Test\Lab.Customers.Domain.Test.csproj", "{9B7EBBCD-E9A4-484F-A925-8F761B7E30A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Customers.Telemetry", "src\Lab.Customers.Telemetry\Lab.Customers.Telemetry.csproj", "{96D40AB3-14FB-4139-A16B-66052BE33DAF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Customers.Infra.Telemetry", "src\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj", "{96D40AB3-14FB-4139-A16B-66052BE33DAF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

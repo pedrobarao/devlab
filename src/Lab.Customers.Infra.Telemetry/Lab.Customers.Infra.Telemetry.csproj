@@ -7,23 +7,18 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Remove="Class1.cs"/>
-        <Compile Remove="Extensions\**" />
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.2.0" />
+        <PackageReference Include="Azure.Monitor.OpenTelemetry.Exporter" Version="1.2.0"/>
         <PackageReference Include="OpenTelemetry.Exporter.Console" Version="1.8.1"/>
         <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.8.1"/>
         <PackageReference Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.8.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Remove="Extensions\**" />
+        <EmbeddedResource Remove="Extensions\**"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Extensions\**" />
+        <None Remove="Extensions\**"/>
     </ItemGroup>
 
 </Project>

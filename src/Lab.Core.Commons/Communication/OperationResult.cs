@@ -45,7 +45,6 @@ public class OperationResult : IOperationResult
     }
 
     public Dictionary<string, string> GetErrors()
-
     {
         return _errors;
     }
