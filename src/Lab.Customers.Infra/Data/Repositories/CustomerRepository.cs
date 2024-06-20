@@ -34,7 +34,7 @@ public sealed class CustomerRepository : ICustomerRepository
                       WHERE (@Name IS NULL OR Name LIKE '%' + @Name + '%') 
                       ORDER BY [Name] 
                       OFFSET {pageSize * (pageIndex - 1)} ROWS 
-                      FETCH NEXT {pageSize} ROWS ONLY 
+                      FETCH NEXT {pageSize} ROWS ONLY
                       SELECT COUNT(Id) FROM Customers 
                       WHERE (@Name IS NULL OR Nome LIKE '%' + @Name + '%')";
 

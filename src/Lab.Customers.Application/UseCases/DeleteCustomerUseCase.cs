@@ -5,7 +5,7 @@ namespace Lab.Customers.Application.UseCases;
 
 public class DeleteCustomerUseCase : IDeleteCustomerUseCase
 {
-    public Task<OperationResult> ExecuteAsync(Guid id)
+    public async Task<IOperationResult> Execute(Guid id)
     {
         throw new NotImplementedException();
     }

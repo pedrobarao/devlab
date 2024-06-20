@@ -11,7 +11,7 @@ namespace Lab.Customers.Application.UseCases;
 
 public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICreateCustomerUseCase
 {
-    public async Task<IOperationResult<CustomerCreatedDto>> ExecuteAsync(NewCustomerDto newCustomerDto)
+    public async Task<IOperationResult<CustomerCreatedDto>> Execute(NewCustomerDto newCustomerDto)
     {
         var name = new Name(newCustomerDto.FirstName, newCustomerDto.LastName);
         var cpf = new Cpf(newCustomerDto.Cpf);

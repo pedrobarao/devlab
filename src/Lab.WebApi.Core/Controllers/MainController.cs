@@ -4,11 +4,6 @@ using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace Lab.WebApi.Core.Controllers;
 
-public class DefaultBadRequest
-{
-    public ValidationProblemDetails Error { get; set; }
-}
-
 [ApiController]
 public abstract class MainController : ControllerBase
 {

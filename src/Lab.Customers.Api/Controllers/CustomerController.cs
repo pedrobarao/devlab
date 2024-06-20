@@ -9,6 +9,7 @@ namespace Lab.Customers.Api.Controllers;
 public class CustomerController(
     ICreateCustomerUseCase createCustomerUseCase,
     IGetCustomerUseCase getCustomerUseCase,
+    IListCustomerUseCase listCustomerUseCase,
     IUpdateCustomerUseCase updateCustomerUseCase,
     IDeleteCustomerUseCase deleteCustomerUseCase,
     ILogger<CustomerController> logger)
@@ -17,7 +18,7 @@ public class CustomerController(
     [HttpPost]
     public async Task<IActionResult> Create(NewCustomerDto newCustomer)
     {
-        var result = await createCustomerUseCase.ExecuteAsync(newCustomer);
+        var result = await createCustomerUseCase.Execute(newCustomer);
 
         if (result.HasErrors())
         {
@@ -31,14 +32,14 @@ public class CustomerController(
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var customer = await getCustomerUseCase.GetByIdAsync(id);
+        var customer = await getCustomerUseCase.Execute(id);
         return customer is null ? NotFound() : Ok(customer);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] QueryCustomerDto query)
     {
-        var result = await getCustomerUseCase.ListAsync(query);
+        var result = await listCustomerUseCase.Execute(query);
         return Ok(result);
     }
 
@@ -47,7 +48,7 @@ public class CustomerController(
     {
         if (id != updateCustomer.Id) return BadRequest("The consumer id is invalid.");
 
-        var result = await updateCustomerUseCase.ExecuteAsync(updateCustomer);
+        var result = await updateCustomerUseCase.Execute(updateCustomer);
 
         if (result.HasErrors())
         {
@@ -61,7 +62,7 @@ public class CustomerController(
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        var result = await deleteCustomerUseCase.ExecuteAsync(id);
+        var result = await deleteCustomerUseCase.Execute(id);
 
         if (result.HasErrors())
         {

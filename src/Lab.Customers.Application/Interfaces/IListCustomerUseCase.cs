@@ -5,6 +5,6 @@ using Lab.Customers.Application.DTOs.Outputs;
 
 namespace Lab.Customers.Application.Interfaces;
 
-public interface ICreateCustomerUseCase : IUseCase<NewCustomerDto, IOperationResult<CustomerCreatedDto>>
+public interface IListCustomerUseCase : IUseCase<QueryCustomerDto, PagedResult<CustomerDto>>
 {
 }
