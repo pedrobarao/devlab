@@ -91,3 +91,11 @@ e
 5src/Lab.Core.Commons/Specifications/ISpecification.cs,3\c\3c38def135f43299858caba883906d2d787d1d06
 k
 ;src/Lab.Core.Commons/Communication/PagedResultExtensions.cs,b\2\b2762a3177ad9bbb782f8183290cc6a412da68d8
+j
+:src/Lab.Customers.Api/v1/Controllers/CustomerController.cs,c\0\c0fa7b417eae0194b9fa92bc643e3b9a581ea571
+`
+0src/Lab.WebApi.Core/ApplicationIdentity/IUser.cs,5\5\55bd434de1845e309d728479328833f95ed20631
+b
+2src/Lab.WebApi.Core/ApplicationIdentity/UserApp.cs,c\c\ccd4127fca76a879f9ed8bc84b02533bb5a04bb1
+t
+Dsrc/Lab.WebApi.Core/ApplicationIdentity/ClaimsPrincipalExtensions.cs,d\8\d838ce5329e64fab0bc64fad6d7f9b7f24cb461d

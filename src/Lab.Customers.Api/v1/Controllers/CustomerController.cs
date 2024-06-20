@@ -3,9 +3,10 @@ using Lab.Customers.Application.Interfaces;
 using Lab.WebApi.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Lab.Customers.Api.Controllers;
+namespace Lab.Customers.Api.v1.Controllers;
 
-[Route("api/customers")]
+[ApiVersion("1.0")]
+[Route("api/v{version:apiVersion}/customers")]
 public class CustomerController(
     ICreateCustomerUseCase createCustomerUseCase,
     IGetCustomerUseCase getCustomerUseCase,
