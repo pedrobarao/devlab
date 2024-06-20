@@ -19,7 +19,7 @@ public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICr
         var customer = new Customer(name, cpf, newCustomerDto.BirthDate);
 
         var validate = new CustomerLegalAgeValidator().Validate(customer);
-        
+        var t = validate.IsValid;
         // customerRepository.Add(customer);
         // await customerRepository.UnitOfWork.Commit();
 

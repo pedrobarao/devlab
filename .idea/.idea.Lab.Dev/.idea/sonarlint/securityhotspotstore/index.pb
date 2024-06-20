@@ -69,3 +69,5 @@ k
 ;src/Lab.Customers.Application/DTOs/Inputs/NewCustomerDto.cs,1\6\1643b60b1058b1bd0a222ea406abd53ca9a5ca8e
 ]
 -src/Lab.Customers.Domain/Entities/Customer.cs,6\2\623c65db2bd8e4ebbea781cce3986f379de7c717
+g
+7src/Lab.Core.Commons/Specifications/ValidationResult.cs,4\7\47492d42156746d2c450d3ad5e17a793f991dad0

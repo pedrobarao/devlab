@@ -6,12 +6,15 @@ public abstract class SpecificationValidator<TEntity> where TEntity : class
 {
     private readonly List<ISpecification<TEntity>> _specifications = new();
 
-    public bool Validate(TEntity entity)
+    public ValidationResult Validate(TEntity entity)
     {
-        return _specifications.All(spec => spec.IsSatisfiedBy(entity));
+        //_specifications.All(spec => spec.IsSatisfiedBy(entity));
+        var errorMessages = GetErrors(entity);
+
+        return new ValidationResult(errorMessages);
     }
 
-    public IEnumerable<string> GetErrorMessages(TEntity entity)
+    private IEnumerable<string> GetErrors(TEntity entity)
     {
         return _specifications
             .Where(spec => !spec.IsSatisfiedBy(entity))
