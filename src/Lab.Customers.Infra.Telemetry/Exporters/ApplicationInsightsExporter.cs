@@ -14,16 +14,14 @@ public class ApplicationInsightsExporter(string instrumentationKey) : IApmExport
     public TracerProviderBuilder AddExporter(TracerProviderBuilder builder)
     {
         return builder
-            .SetResourceBuilder(ResourceBuilder.CreateDefault()
-                .AddTelemetrySdk())
+            //.SetResourceBuilder(ResourceBuilder.CreateDefault().AddTelemetrySdk())
             .AddAzureMonitorTraceExporter(o => { o.ConnectionString = $"InstrumentationKey={_instrumentationKey}"; });
     }
 
     public MeterProviderBuilder AddExporter(MeterProviderBuilder builder)
     {
         return builder
-            .SetResourceBuilder(ResourceBuilder.CreateDefault()
-                .AddTelemetrySdk())
+            //.SetResourceBuilder(ResourceBuilder.CreateDefault().AddTelemetrySdk())
             .AddAzureMonitorMetricExporter(o => { o.ConnectionString = $"InstrumentationKey={_instrumentationKey}"; });
     }
 }

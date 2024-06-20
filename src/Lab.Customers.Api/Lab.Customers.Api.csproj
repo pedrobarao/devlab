@@ -8,43 +8,43 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1"/>
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.1" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.4">
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2"/>
-        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0"/>
-        <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.6.2"/>
+        <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.2" />
+        <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+        <PackageReference Include="Swashbuckle.AspNetCore.ReDoc" Version="6.6.2" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Lab.Customers.Application\Lab.Customers.Application.csproj"/>
-        <ProjectReference Include="..\Lab.Customers.Infra\Lab.Customers.Infra.csproj"/>
-        <ProjectReference Include="..\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj"/>
-        <ProjectReference Include="..\Lab.WebApi.Core\Lab.WebApi.Core.csproj"/>
+        <ProjectReference Include="..\Lab.Customers.Application\Lab.Customers.Application.csproj" />
+        <ProjectReference Include="..\Lab.Customers.Infra\Lab.Customers.Infra.csproj" />
+        <ProjectReference Include="..\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj" />
+        <ProjectReference Include="..\Lab.WebApi.Core\Lab.WebApi.Core.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <Folder Include="Controllers\"/>
+        <Folder Include="Controllers\" />
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Remove="Extensions\RequestValidationMessages.resx"/>
-        <EmbeddedResource Remove="Validations\**"/>
+        <EmbeddedResource Remove="Extensions\RequestValidationMessages.resx" />
+        <EmbeddedResource Remove="Validations\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <Compile Remove="Extensions\RequestValidationMessages.Designer.cs"/>
-        <Compile Remove="Validations\**"/>
+        <Compile Remove="Extensions\RequestValidationMessages.Designer.cs" />
+        <Compile Remove="Validations\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <Content Remove="Validations\**"/>
+        <Content Remove="Validations\**" />
     </ItemGroup>
 
     <ItemGroup>
-        <None Remove="Validations\**"/>
+        <None Remove="Validations\**" />
     </ItemGroup>
 
 </Project>
