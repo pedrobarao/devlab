@@ -31,8 +31,7 @@ public static class TelemetryConfig
 
             foreach (var logExporter in options.LogExporters) otelLogging = logExporter.AddExporter(otelLogging);
         });
-
-
+        
         builder.Services.AddOpenTelemetry()
         .ConfigureResource(resource => resource.AddService(options.ServiceName))
         .WithTracing(tracing =>
