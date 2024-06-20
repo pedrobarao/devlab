@@ -1,9 +1,5 @@
-#region
-
 using Lab.Customers.Api.Config;
 using Lab.Customers.Infra.Telemetry.Config;
-
-#endregion
 
 var builder = WebApplication.CreateBuilder(args);
 
