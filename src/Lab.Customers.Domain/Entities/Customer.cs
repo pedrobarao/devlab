@@ -13,9 +13,9 @@ public class Customer : Entity, IAggregateRoot
 
     public Customer(Name name, Cpf cpf, DateTime birthDate)
     {
-        Name = name.IsValid() ? name : throw new DomainException("Invalid name");
-        Cpf = Cpf.Validate(cpf.Number) ? cpf : throw new DomainException("Invalid CPF");
-        BirthDate = IsValidBirthDate() ? birthDate : throw new DomainException("Invalid birth date");
+        Name = name;
+        Cpf = cpf;
+        BirthDate = birthDate;
     }
 
     public Name Name { get; private set; }

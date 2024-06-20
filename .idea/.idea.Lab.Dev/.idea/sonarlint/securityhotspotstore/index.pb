@@ -65,3 +65,7 @@ o
 ?src/Lab.Customers.Domain/Specifications/CustomerBirthdaySpec.cs,f\f\fff1557317d680fe5720c33b96caee43b77e3b30
 
 Osrc/Lab.Customers.Domain/Specifications/Validators/CustomerLegalAgeValidator.cs,a\d\ad0d11947bb5e207a1d752c4498ff16863c4b696
+k
+;src/Lab.Customers.Application/DTOs/Inputs/NewCustomerDto.cs,1\6\1643b60b1058b1bd0a222ea406abd53ca9a5ca8e
+]
+-src/Lab.Customers.Domain/Entities/Customer.cs,6\2\623c65db2bd8e4ebbea781cce3986f379de7c717
