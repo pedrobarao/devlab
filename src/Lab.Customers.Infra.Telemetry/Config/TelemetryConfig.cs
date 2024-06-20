@@ -33,8 +33,6 @@ public static class TelemetryConfig
         });
 
 
-
-
         builder.Services.AddOpenTelemetry()
         .ConfigureResource(resource => resource.AddService(options.ServiceName))
         .WithTracing(tracing =>
