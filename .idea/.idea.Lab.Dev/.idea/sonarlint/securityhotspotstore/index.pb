@@ -53,3 +53,15 @@ d
 4src/Lab.Customers.Application/Interfaces/IUseCase.cs,6\1\618386ae3f560f6bf9409b43bb55601130e1ca6c
 Y
 )src/Lab.Core.Commons/UseCases/IUseCase.cs,9\4\94163eae30d059242157472da6376fa811c21be9
+a
+1src/Lab.Core.Commons/Validators/ISpecification.cs,4\5\45eeb990f6ca5f4c578a241dc7dca77e867d20a9
+i
+9src/Lab.Core.Commons/Validators/SpecificationValidator.cs,e\1\e1094f4ca235e1c6a6f3d0dab1a7a5f2a8a7d12a
+f
+6src/Lab.Customers.Domain/Specs/CustomerBirthdaySpec.cs,a\7\a7090e7748a2511d558fadf11de79baa8dd649b2
+m
+=src/Lab.Core.Commons/Specifications/SpecificationValidator.cs,3\c\3ccedcd118c39c5a77eaa3e5ff032fc1aee69ff3
+o
+?src/Lab.Customers.Domain/Specifications/CustomerBirthdaySpec.cs,f\f\fff1557317d680fe5720c33b96caee43b77e3b30
+
+Osrc/Lab.Customers.Domain/Specifications/Validators/CustomerLegalAgeValidator.cs,a\d\ad0d11947bb5e207a1d752c4498ff16863c4b696
