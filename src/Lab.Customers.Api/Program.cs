@@ -1,5 +1,5 @@
 using Lab.Customers.Api.Config;
-using Lab.Customers.Infra.Telemetry.Config;
+using Lab.Telemetry.Config;
 
 var builder = WebApplication.CreateBuilder(args);
 

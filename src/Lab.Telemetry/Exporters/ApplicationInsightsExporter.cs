@@ -1,9 +1,9 @@
 ﻿using Azure.Monitor.OpenTelemetry.Exporter;
-using Lab.Customers.Infra.Telemetry.Interfaces;
+using Lab.Telemetry.Interfaces;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
-namespace Lab.Customers.Infra.Telemetry.Exporters;
+namespace Lab.Telemetry.Exporters;
 
 public class ApplicationInsightsExporter(string instrumentationKey) : IApmExporter
 {

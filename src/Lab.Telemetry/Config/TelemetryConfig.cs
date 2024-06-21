@@ -7,7 +7,7 @@ using OpenTelemetry.Metrics;
 using OpenTelemetry.Resources;
 using OpenTelemetry.Trace;
 
-namespace Lab.Customers.Infra.Telemetry.Config;
+namespace Lab.Telemetry.Config;
 
 public static class TelemetryConfig
 {

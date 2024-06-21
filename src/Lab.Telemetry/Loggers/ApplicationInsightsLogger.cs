@@ -1,8 +1,8 @@
 ﻿using Azure.Monitor.OpenTelemetry.Exporter;
-using Lab.Customers.Infra.Telemetry.Interfaces;
+using Lab.Telemetry.Interfaces;
 using OpenTelemetry.Logs;
 
-namespace Lab.Customers.Infra.Telemetry.Loggers;
+namespace Lab.Telemetry.Loggers;
 
 public class ApplicationInsightsLogger(string instrumentationKey) : ILogExporter
 {

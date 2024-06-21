@@ -9,7 +9,7 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Lab.Customers.Domain\Lab.Customers.Domain.csproj"/>
-        <ProjectReference Include="..\Lab.Customers.Infra.Telemetry\Lab.Customers.Infra.Telemetry.csproj"/>
+        <ProjectReference Include="..\Lab.Telemetry\Lab.Telemetry.csproj"/>
     </ItemGroup>
 
     <ItemGroup>

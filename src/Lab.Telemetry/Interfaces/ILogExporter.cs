@@ -1,6 +1,6 @@
 ﻿using OpenTelemetry.Logs;
 
-namespace Lab.Customers.Infra.Telemetry.Interfaces;
+namespace Lab.Telemetry.Interfaces;
 
 public interface ILogExporter
 {

@@ -1,6 +1,6 @@
-﻿using Lab.Customers.Infra.Telemetry.Interfaces;
+﻿using Lab.Telemetry.Interfaces;
 
-namespace Lab.Customers.Infra.Telemetry.Config;
+namespace Lab.Telemetry.Config;
 
 public class TelemetryOptions
 {
