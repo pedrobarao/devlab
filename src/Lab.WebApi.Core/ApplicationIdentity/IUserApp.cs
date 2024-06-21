@@ -13,5 +13,5 @@ public interface IUserApp
     bool IsAuthenticated();
     bool IsInRole(string role);
     IEnumerable<Claim> GetClaims();
-    HttpContext GetHttpContext();   
+    HttpContext GetHttpContext();
 }

@@ -14,7 +14,7 @@ public static class ApiConfig
         services.AddEndpointsApiExplorer();
         services.AddSwaggerConfig();
         services.RegisterServices(configuration);
-        
+
         services.AddApiVersioning(config =>
         {
             config.ApiVersionReader = new UrlSegmentApiVersionReader();

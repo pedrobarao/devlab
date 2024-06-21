@@ -1,12 +1,4 @@
-﻿using System.Reflection;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
-using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Versioning;
-using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
-
-namespace Lab.Customers.Api.Config;
+﻿namespace Lab.Customers.Api.Config;
 
 public static class SwaggerConfig
 {
