@@ -1,5 +1,4 @@
 ﻿using Lab.Core.Commons.Specifications;
-using Lab.Core.Commons.ValueObjects;
 using Lab.Customers.Domain.Entities;
 
 namespace Lab.Customers.Domain.Specifications;

@@ -22,6 +22,8 @@ public static class ApiConfig
             config.DefaultApiVersion = new ApiVersion(1, 0);
         });
 
+        services.AddHealthCheckConfig();
+
         return services;
     }
 
@@ -31,7 +33,7 @@ public static class ApiConfig
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
-
+        app.UseHealthCheckConfig();
         return app;
     }
 }
