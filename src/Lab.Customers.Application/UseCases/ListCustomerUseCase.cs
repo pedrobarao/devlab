@@ -11,7 +11,7 @@ public class ListCustomerUseCase(ICustomerRepository customerRepository, TracerP
     : IListCustomerUseCase
 {
     public IOperationResult<PagedResult<CustomerDto>> OperationResult { get; } =
-        new OperationResult<PagedResult<CustomerDto>>();
+        Result.Create<PagedResult<CustomerDto>>();
 
     public async Task<IOperationResult<PagedResult<CustomerDto>>> Execute(QueryCustomerDto query)
     {
@@ -28,5 +28,10 @@ public class ListCustomerUseCase(ICustomerRepository customerRepository, TracerP
         OperationResult.SetData(pagedCustomersDto);
 
         return OperationResult;
+    }
+
+    public bool ValidateInput(QueryCustomerDto request)
+    {
+        throw new NotImplementedException();
     }
 }

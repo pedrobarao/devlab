@@ -1,24 +1,42 @@
 ﻿namespace Lab.Core.Commons.Specifications;
 
-public abstract class SpecificationValidator<TEntity> where TEntity : class
+public abstract class SpecificationValidator<T> where T : class
 {
-    private readonly List<ISpecification<TEntity>> _specifications = new();
+    private readonly Dictionary<string, Rule<T>> _validationRules = new();
 
-    public ValidationResult Validate(TEntity entity)
+    public ValidationResult Validate(T obj)
     {
-        var errorMessages = GetErrors(entity);
-        return new ValidationResult(errorMessages);
+        ValidationResult validationResult = new();
+
+        foreach (var validationRule in _validationRules)
+        {
+            var validation = validationRule.Value;
+
+            if (!validation.Validate(obj))
+                validationResult.Errors.Add(new Failure
+                (
+                    validation.ErrorMessage,
+                    validationRule.Key,
+                    obj.GetType().Name
+                ));
+        }
+
+        return validationResult;
     }
 
-    private IEnumerable<string> GetErrors(TEntity entity)
+    protected void Add(string name, Rule<T> rule)
     {
-        return _specifications
-            .Where(spec => !spec.IsSatisfiedBy(entity))
-            .Select(spec => spec.ErrorMessage);
+        _validationRules.Add(name, rule);
     }
 
-    protected void Add(ISpecification<TEntity> spec)
+    protected void Remove(string name)
     {
-        _specifications.Add(spec);
+        _validationRules.Remove(name);
+    }
+
+    protected Rule<T> GetRule(string name)
+    {
+        _validationRules.TryGetValue(name, out var rule);
+        return rule;
     }
 }

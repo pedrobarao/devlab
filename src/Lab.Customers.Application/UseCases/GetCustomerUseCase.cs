@@ -7,7 +7,7 @@ namespace Lab.Customers.Application.UseCases;
 
 public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCustomerUseCase
 {
-    public IOperationResult<CustomerDto?> OperationResult { get; }
+    public IOperationResult<CustomerDto?> OperationResult { get; } = Result.Create<CustomerDto?>();
 
     public async Task<IOperationResult<CustomerDto?>> Execute(Guid id)
     {
@@ -15,12 +15,19 @@ public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCu
 
         if (customers is null) return null;
 
-        return new OperationResult<CustomerDto?>(new CustomerDto
+        OperationResult.SetData(new CustomerDto
         {
             Id = customers.Id,
             Name = customers.Name.ToString(),
             Cpf = customers.Cpf.ToString(),
             BirthDate = customers.BirthDate
         });
+
+        return OperationResult;
+    }
+
+    public bool ValidateInput(Guid request)
+    {
+        throw new NotImplementedException();
     }
 }

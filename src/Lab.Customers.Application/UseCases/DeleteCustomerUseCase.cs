@@ -6,7 +6,7 @@ namespace Lab.Customers.Application.UseCases;
 
 public class DeleteCustomerUseCase(ICustomerRepository customerRepository) : IDeleteCustomerUseCase
 {
-    public IOperationResult OperationResult { get; } = new OperationResult();
+    public IOperationResult OperationResult { get; } = Result.Create();
 
     public async Task<IOperationResult> Execute(Guid id)
     {
@@ -22,5 +22,10 @@ public class DeleteCustomerUseCase(ICustomerRepository customerRepository) : IDe
         await customerRepository.UnitOfWork.Commit();
 
         return OperationResult;
+    }
+
+    public bool ValidateInput(Guid request)
+    {
+        throw new NotImplementedException();
     }
 }

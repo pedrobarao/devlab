@@ -28,6 +28,10 @@ public class OperationResult : IOperationResult
 {
     private readonly List<string> _errors = new();
 
+    internal OperationResult()
+    {
+    }
+
     public void AddError(string error)
     {
         _errors.Add(error);
@@ -35,7 +39,7 @@ public class OperationResult : IOperationResult
 
     public void AddErrors(ValidationResult validationResult)
     {
-        foreach (var error in validationResult.Errors) _errors.Add(error);
+        foreach (var error in validationResult.Errors) _errors.Add(error.ErrorMessage);
     }
 
     public void AddErrors(IEnumerable<string> errors)
@@ -63,7 +67,7 @@ public class OperationResult<TData> : OperationResult, IOperationResult<TData>
 {
     private TData _data;
 
-    public OperationResult(TData data = default)
+    internal OperationResult(TData data = default)
     {
         _data = data;
     }
@@ -76,5 +80,18 @@ public class OperationResult<TData> : OperationResult, IOperationResult<TData>
     public void SetData(TData data)
     {
         _data = data;
+    }
+}
+
+public static class Result
+{
+    public static OperationResult Create()
+    {
+        return new OperationResult();
+    }
+
+    public static OperationResult<T> Create<T>(T data = default)
+    {
+        return new OperationResult<T>(data);
     }
 }

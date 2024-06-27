@@ -7,8 +7,8 @@ public class CustomerValidator : SpecificationValidator<Customer>
 {
     public CustomerValidator()
     {
-        Add(new CustomerLegalAgeSpec());
-        Add(new CustomerCpfSpec());
-        Add(new CustomerFullNameSpec());
+        Add("legalAge", new Rule<Customer>(new CustomerLegalAgeSpec(), "Invalid customer age."));
+        Add("cpf", new Rule<Customer>(new CustomerCpfSpec(), "Invalid customer CPF."));
+        Add("fullName", new Rule<Customer>(new CustomerFullNameSpec(), "Invalid customer name."));
     }
 }

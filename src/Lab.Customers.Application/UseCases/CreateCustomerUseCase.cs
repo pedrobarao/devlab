@@ -11,8 +11,7 @@ namespace Lab.Customers.Application.UseCases;
 
 public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICreateCustomerUseCase
 {
-    public IOperationResult<CustomerCreatedDto> OperationResult { get; } =
-        new OperationResult<CustomerCreatedDto>();
+    public IOperationResult<CustomerCreatedDto> OperationResult { get; } = Result.Create<CustomerCreatedDto>();
 
     public async Task<IOperationResult<CustomerCreatedDto>> Execute(NewCustomerDto newCustomerDto)
     {
@@ -29,5 +28,10 @@ public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICr
         OperationResult.SetData(new CustomerCreatedDto { Id = customer.Id });
 
         return OperationResult;
+    }
+
+    public bool ValidateInput(NewCustomerDto request)
+    {
+        throw new NotImplementedException();
     }
 }
