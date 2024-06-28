@@ -1,6 +1,4 @@
-using Lab.Customers.Infra.Data;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 
 namespace Lab.Customers.Api.Config;
 

@@ -11,9 +11,7 @@ public abstract class MainController : ControllerBase
 
     protected ActionResult ResponseDefault(object? result = null)
     {
-        if (IsValidOperation()) return Ok(result);
-
-        return BadRequestDefault();
+        return IsValidOperation() ? Ok(result) : BadRequestDefault();
     }
 
     protected ActionResult BadRequestDefault()
@@ -33,19 +31,19 @@ public abstract class MainController : ControllerBase
         return ResponseDefault();
     }
 
-    protected ActionResult ResponseDefault<T>(OperationResult<T> result)
+    protected ActionResult ResponseDefault<T>(OperationResult<T>? result)
     {
         HasErrors(result);
         return ResponseDefault(result.GetData());
     }
 
-    protected ActionResult ResponseDefault(OperationResult result)
+    protected ActionResult ResponseDefault(OperationResult? result)
     {
         HasErrors(result);
         return ResponseDefault();
     }
 
-    protected bool HasErrors(OperationResult result)
+    protected bool HasErrors(OperationResult? result)
     {
         if (result is null || !result.GetErrors().Any()) return false;
 

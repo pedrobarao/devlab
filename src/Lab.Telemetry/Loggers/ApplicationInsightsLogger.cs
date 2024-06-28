@@ -4,14 +4,10 @@ using OpenTelemetry.Logs;
 
 namespace Lab.Telemetry.Loggers;
 
-public class ApplicationInsightsLogger(string instrumentationKey) : ILogExporter
+public class ApplicationInsightsLogger(Action<AzureMonitorExporterOptions> options) : ILogExporter
 {
-    private readonly string _instrumentationKey =
-        instrumentationKey ?? throw new ArgumentNullException(nameof(instrumentationKey));
-
-    public OpenTelemetryLoggerOptions AddExporter(OpenTelemetryLoggerOptions options)
+    public OpenTelemetryLoggerOptions AddExporter(OpenTelemetryLoggerOptions loggerOptions)
     {
-        return options.AddAzureMonitorLogExporter(o =>
-            o.ConnectionString = $"InstrumentationKey={_instrumentationKey}");
+        return loggerOptions.AddAzureMonitorLogExporter(options);
     }
 }

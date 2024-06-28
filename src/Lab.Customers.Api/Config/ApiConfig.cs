@@ -22,6 +22,15 @@ public static class ApiConfig
             config.DefaultApiVersion = new ApiVersion(1, 0);
         });
 
+        // TODO: Config from context
+        services.AddCors(options =>
+        {
+            options.AddPolicy("DefaultCors",
+                builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader());
+        });
+
         services.AddHealthCheckConfig();
 
         return services;
@@ -33,6 +42,7 @@ public static class ApiConfig
         app.UseHttpsRedirection();
         app.UseAuthorization();
         app.MapControllers();
+        app.UseCors("DefaultCors");
         app.UseHealthCheckConfig();
         return app;
     }
