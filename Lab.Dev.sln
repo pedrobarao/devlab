@@ -28,7 +28,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.WebApi.Core", "src\Lab.
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{DE28013B-9568-4B91-9DD8-AC3636BD548B}"
 	ProjectSection(SolutionItems) = preProject
-		deploy\init.sql = deploy\init.sql
+		deploy\docker-compose.yaml = deploy\docker-compose.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Application", "2 - Application", "{D74FE831-A2BB-45C8-96C1-B936AD7D279B}"
@@ -40,6 +40,23 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Customers.Domain.Test", "test\Lab.Customers.Domain.Test\Lab.Customers.Domain.Test.csproj", "{9B7EBBCD-E9A4-484F-A925-8F761B7E30A6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lab.Telemetry", "src\Lab.Telemetry\Lab.Telemetry.csproj", "{96D40AB3-14FB-4139-A16B-66052BE33DAF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "db", "db", "{A07C787E-42D8-4331-9AE3-448C4B184B12}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\db\init.sql = deploy\db\init.sql
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "k8s", "k8s", "{3245E7B5-D089-4AFC-9E01-2DB160C6EE30}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\k8s\service.yaml = deploy\k8s\service.yaml
+		deploy\k8s\deployment.yaml = deploy\k8s\deployment.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "otel", "otel", "{7826E638-2994-4D39-9FC9-76EDA01B0FFE}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\otel\otel-collector-config.yaml = deploy\otel\otel-collector-config.yaml
+		deploy\otel\Dockerfile = deploy\otel\Dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +80,9 @@ Global
 		{E556143C-EF81-4DEA-9585-7BE5DC96C5F0} = {D74FE831-A2BB-45C8-96C1-B936AD7D279B}
 		{9B7EBBCD-E9A4-484F-A925-8F761B7E30A6} = {858095F6-EEAE-4FF1-A179-DDC3B73DCB8A}
 		{96D40AB3-14FB-4139-A16B-66052BE33DAF} = {2A8348BD-7859-4F8F-B933-35F8F0C3FDE7}
+		{A07C787E-42D8-4331-9AE3-448C4B184B12} = {DE28013B-9568-4B91-9DD8-AC3636BD548B}
+		{3245E7B5-D089-4AFC-9E01-2DB160C6EE30} = {DE28013B-9568-4B91-9DD8-AC3636BD548B}
+		{7826E638-2994-4D39-9FC9-76EDA01B0FFE} = {DE28013B-9568-4B91-9DD8-AC3636BD548B}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{10B12BFA-2467-4006-A624-000BB38DD4E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU

@@ -12,13 +12,13 @@ builder.AddTelemetry(options =>
 {
     options.AddLogExporter(new OpenTelemetryCollectorLogger(o =>
     {
-        o.Endpoint = new Uri("");
+        //o.Endpoint = new Uri("localhost:4317");
         o.Protocol = OtlpExportProtocol.Grpc;
     }));
 
     options.AddApmExporter(new OpenTelemetryCollectorExporter(o =>
     {
-        o.Endpoint = new Uri("");
+        //o.Endpoint = new Uri("localhost:4317");
         o.Protocol = OtlpExportProtocol.Grpc;
     }));
 });
