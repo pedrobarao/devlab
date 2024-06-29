@@ -1,5 +1,5 @@
 ﻿FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-# Default non root user in images .NET 8+
+# Default non root user in Docker images .NET 8+
 USER app
 WORKDIR /app
 EXPOSE 8080
