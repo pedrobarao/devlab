@@ -20,9 +20,4 @@
         <Using Include="Xunit"/>
     </ItemGroup>
 
-    <ItemGroup>
-        <Folder Include="Builders\"/>
-        <Folder Include="Entities\"/>
-    </ItemGroup>
-
 </Project>
