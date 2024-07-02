@@ -1,7 +1,5 @@
 ﻿using Lab.Telemetry.Interfaces;
-using Microsoft.Extensions.Options;
 using OpenTelemetry.Exporter;
-using OpenTelemetry.Logs;
 using OpenTelemetry.Metrics;
 using OpenTelemetry.Trace;
 
