@@ -1,14 +1,15 @@
-﻿using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.Extensions.DependencyInjection;
-using System.Net.Http.Headers;
+﻿using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using Lab.Commons.IntegrationTest.Factory;
+using Microsoft.AspNetCore.Mvc.Testing;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace Lab.Commons.IntegrationTest.Fixtures;
 
 [CollectionDefinition(nameof(IntegrationTestFixtureCollection<TProgram>))]
-public class IntegrationTestFixtureCollection<TProgram> : ICollectionFixture<IntegrationTestFixture<TProgram>> where TProgram : class
+public class IntegrationTestFixtureCollection<TProgram> : ICollectionFixture<IntegrationTestFixture<TProgram>>
+    where TProgram : class
 {
 }
 
@@ -30,6 +31,16 @@ public class IntegrationTestFixture<TProgram> : IAsyncLifetime where TProgram : 
             HandleCookies = true,
             MaxAutomaticRedirections = 7
         });
+    }
+
+    public async Task DisposeAsync()
+    {
+        ServiceScope?.Dispose();
+        Client?.Dispose();
+    }
+
+    public async Task InitializeAsync()
+    {
     }
 
     public async Task<UserTest> LoginApi(UserLogin userLogin, bool setDefault = true)
@@ -54,10 +65,7 @@ public class IntegrationTestFixture<TProgram> : IAsyncLifetime where TProgram : 
 
         if (responseToken is null) throw new Exception("Login inválido");
 
-        if (setDefault)
-        {
-            SetDefaultUser(responseToken);
-        }
+        if (setDefault) SetDefaultUser(responseToken);
 
         return responseToken;
     }
@@ -66,15 +74,5 @@ public class IntegrationTestFixture<TProgram> : IAsyncLifetime where TProgram : 
     {
         User = user;
         Client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", User.AccessToken);
-    }
-
-    public async Task DisposeAsync()
-    {
-        ServiceScope?.Dispose();
-        Client?.Dispose();
-    }
-
-    public async Task InitializeAsync()
-    {
     }
 }
