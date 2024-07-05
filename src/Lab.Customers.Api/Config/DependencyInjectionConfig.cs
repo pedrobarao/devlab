@@ -11,16 +11,17 @@ public static class DependencyInjectionConfig
 {
     public static IServiceCollection RegisterServices(this IServiceCollection services, IConfiguration configuration)
     {
-        AddUseCases(services);
+        RegisterUseCases(services);
         RegisterInfraServices(services, configuration);
 
         return services;
     }
 
-    private static void AddUseCases(IServiceCollection services)
+    private static void RegisterUseCases(IServiceCollection services)
     {
         services.AddScoped<ICreateCustomerUseCase, CreateCustomerUseCase>();
         services.AddScoped<IGetCustomerUseCase, GetCustomerUseCase>();
+        services.AddScoped<IListCustomerUseCase, ListCustomerUseCase>();
         services.AddScoped<IUpdateCustomerUseCase, UpdateCustomerUseCase>();
         services.AddScoped<IDeleteCustomerUseCase, DeleteCustomerUseCase>();
     }

@@ -2,8 +2,8 @@
 
 public record Name(string FirstName, string LastName)
 {
-    public string FirstName { get; init; }
-    public string LastName { get; init; }
+    public string FirstName { get; init; } = FirstName;
+    public string LastName { get; init; } = LastName;
 
     public bool IsValid()
     {

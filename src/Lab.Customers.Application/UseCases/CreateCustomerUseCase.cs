@@ -11,15 +11,27 @@ namespace Lab.Customers.Application.UseCases;
 
 public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICreateCustomerUseCase
 {
-    public async Task<IOperationResult<CustomerCreatedDto>> ExecuteAsync(NewCustomerDto newCustomerDto)
+    public IOperationResult<CustomerCreatedDto> OperationResult { get; } = Result.Create<CustomerCreatedDto>();
+
+    public async Task<IOperationResult<CustomerCreatedDto>> Execute(NewCustomerDto newCustomerDto)
     {
         var name = new Name(newCustomerDto.FirstName, newCustomerDto.LastName);
         var cpf = new Cpf(newCustomerDto.Cpf);
         var customer = new Customer(name, cpf, newCustomerDto.BirthDate);
+        var validationResult = customer.Validate();
+
+        if (!validationResult.IsValid) OperationResult.AddErrors(validationResult);
 
         customerRepository.Add(customer);
         await customerRepository.UnitOfWork.Commit();
 
-        return new OperationResult<CustomerCreatedDto>(new CustomerCreatedDto { Id = Guid.NewGuid() });
+        OperationResult.SetData(new CustomerCreatedDto { Id = customer.Id });
+
+        return OperationResult;
+    }
+
+    public bool ValidateInput(NewCustomerDto request)
+    {
+        throw new NotImplementedException();
     }
 }

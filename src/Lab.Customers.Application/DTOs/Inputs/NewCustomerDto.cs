@@ -14,5 +14,5 @@ public class NewCustomerDto
     public string Cpf { get; set; }
 
     [Required(ErrorMessage = "The field {0} is required")]
-    public DateTime BirthDate { get; set; }
+    public DateOnly BirthDate { get; set; }
 }

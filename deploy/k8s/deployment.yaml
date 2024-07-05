@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devlab-api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devlab-api
+  template:
+    metadata:
+      labels:
+        app: devlab-api
+    spec:
+      containers:
+        - name: devlab-api
+          image: devlab-api
+          ports:
+            - containerPort: 8080
+          env:
+            - name: OTEL_EXPORTER_OTLP_ENDPOINT
+              value: http://localhost:4317
+        - name: otel-collector
+          image: otel/opentelemetry-collector-contrib:latest
+          command: ["--config=/etc/otel-collector-config.yaml"]
+          volumeMounts:
+            - name: otel-collector-config
+              mountPath: /etc/otel-collector-config.yaml
+      volumes:
+        - name: otel-collector-config
+          configMap:
+            name: otel-collector-config

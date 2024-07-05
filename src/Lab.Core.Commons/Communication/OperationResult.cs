@@ -1,16 +1,20 @@
-﻿namespace Lab.Core.Commons.Communication;
+﻿using Lab.Core.Commons.Specifications;
+
+namespace Lab.Core.Commons.Communication;
 
 public interface IOperationResult
 {
-    void AddError(string key, string value);
+    void AddError(string error);
 
-    void AddErrors(Dictionary<string, string> errors);
+    void AddErrors(ValidationResult validationResult);
+
+    void AddErrors(IEnumerable<string> errors);
 
     void ClearErrors();
 
     bool HasErrors();
 
-    Dictionary<string, string> GetErrors();
+    IEnumerable<string> GetErrors();
 }
 
 public interface IOperationResult<TData> : IOperationResult
@@ -22,21 +26,28 @@ public interface IOperationResult<TData> : IOperationResult
 
 public class OperationResult : IOperationResult
 {
-    private readonly Dictionary<string, string> _errors = new();
+    private readonly List<string> _errors = new();
 
-    public void AddError(string key, string value)
+    internal OperationResult()
     {
-        _errors.Add(key, value);
     }
 
-    public void AddErrors(Dictionary<string, string> errors)
-
+    public void AddError(string error)
     {
-        foreach (var error in errors) _errors.Add(error.Key, error.Value);
+        _errors.Add(error);
+    }
+
+    public void AddErrors(ValidationResult validationResult)
+    {
+        foreach (var error in validationResult.Errors) _errors.Add(error.ErrorMessage);
+    }
+
+    public void AddErrors(IEnumerable<string> errors)
+    {
+        foreach (var error in errors) _errors.Add(error);
     }
 
     public void ClearErrors()
-
     {
         _errors.Clear();
     }
@@ -46,8 +57,7 @@ public class OperationResult : IOperationResult
         return _errors.Count > 0;
     }
 
-    public Dictionary<string, string> GetErrors()
-
+    public IEnumerable<string> GetErrors()
     {
         return _errors;
     }
@@ -57,7 +67,7 @@ public class OperationResult<TData> : OperationResult, IOperationResult<TData>
 {
     private TData _data;
 
-    public OperationResult(TData data)
+    internal OperationResult(TData data = default)
     {
         _data = data;
     }
@@ -70,5 +80,18 @@ public class OperationResult<TData> : OperationResult, IOperationResult<TData>
     public void SetData(TData data)
     {
         _data = data;
+    }
+}
+
+public static class Result
+{
+    public static OperationResult Create()
+    {
+        return new OperationResult();
+    }
+
+    public static OperationResult<T> Create<T>(T data = default)
+    {
+        return new OperationResult<T>(data);
     }
 }
