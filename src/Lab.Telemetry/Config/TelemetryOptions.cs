@@ -4,7 +4,7 @@ namespace Lab.Telemetry.Config;
 
 public class TelemetryOptions
 {
-    public string ServiceName { get; set; }
+    public string? ServiceName { get; set; }
     public List<IApmExporter> ApmExporters { get; } = new();
     public List<ILogExporter> LogExporters { get; } = new();
 

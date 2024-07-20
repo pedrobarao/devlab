@@ -8,14 +8,17 @@ receivers:
 exporters:
   debug:
     verbosity: detailed
+  elasticsearch:
+    endpoints: [ "http://elasticsearch:9200" ]
+    index: "traces-%{+yyyy.MM.dd}"
 service:
   pipelines:
     traces:
       receivers: [ otlp ]
-      exporters: [ debug ]
+      exporters: [ debug, elasticsearch ]
     metrics:
       receivers: [ otlp ]
-      exporters: [ debug ]
+      exporters: [ debug, elasticsearch ]
     logs:
-      receivers: [ otlp ]
-      exporters: [ debug ]
+      receivers: [ otlp, elasticsearch ]
+      exporters: [ debug, elasticsearch ]

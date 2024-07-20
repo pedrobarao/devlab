@@ -1,4 +1,5 @@
-﻿using Lab.WebApi.Core.ApplicationIdentity;
+﻿using Lab.Customers.Api.Extensions;
+using Lab.WebApi.Core.ApplicationIdentity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Versioning;
 
@@ -8,6 +9,7 @@ public static class ApiConfig
 {
     public static IServiceCollection AddApiConfig(this IServiceCollection services, IConfiguration configuration)
     {
+        services.Configure<AppSettings>(configuration);
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddScoped<IUserApp, UserApp>();
         services.AddControllers();

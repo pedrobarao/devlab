@@ -17,12 +17,10 @@ public static class TelemetryConfig
         var options = new TelemetryOptions();
         configureOptions(options);
 
-
         if (string.IsNullOrEmpty(options.ServiceName))
             options.ServiceName = Assembly.GetEntryAssembly()?.GetName().Name ?? "unknow_service";
 
         builder.Services.AddSingleton(options);
-
 
         builder.Logging.AddOpenTelemetry(otelLogging =>
         {
