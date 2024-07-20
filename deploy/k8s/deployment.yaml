@@ -22,7 +22,7 @@ spec:
               value: http://localhost:4317
         - name: otel-collector
           image: otel/opentelemetry-collector-contrib:latest
-          command: ["--config=/etc/otel-collector-config.yaml"]
+          command: [ "--config=/etc/otel-collector-config.yaml" ]
           volumeMounts:
             - name: otel-collector-config
               mountPath: /etc/otel-collector-config.yaml

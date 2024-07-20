@@ -1,4 +1,5 @@
 ﻿using Lab.Core.Commons.Communication;
+using Lab.Core.Commons.UseCases;
 using Lab.Core.Commons.ValueObjects;
 using Lab.Customers.Application.DTOs.Inputs;
 using Lab.Customers.Application.DTOs.Outputs;
@@ -9,26 +10,27 @@ using Lab.Customers.Domain.ValueObjects;
 
 namespace Lab.Customers.Application.UseCases;
 
-public class CreateCustomerUseCase(ICustomerRepository customerRepository) : ICreateCustomerUseCase
+public class CreateCustomerUseCase(ICustomerRepository customerRepository)
+    : ICreateCustomerUseCase, IUseCase<NewCustomerDto, Result<CustomerCreatedDto>>
 {
-    public IOperationResult<CustomerCreatedDto> OperationResult { get; } = Result.Create<CustomerCreatedDto>();
-
-    public async Task<IOperationResult<CustomerCreatedDto>> Execute(NewCustomerDto newCustomerDto)
+    public async Task<Result<CustomerCreatedDto>> Handle(NewCustomerDto newCustomerDto)
     {
         var name = new Name(newCustomerDto.FirstName, newCustomerDto.LastName);
         var cpf = new Cpf(newCustomerDto.Cpf);
         var customer = new Customer(name, cpf, newCustomerDto.BirthDate);
         var validationResult = customer.Validate();
 
-        if (!validationResult.IsValid) OperationResult.AddErrors(validationResult);
+        if (!validationResult.IsValid) Result.AddErrors(validationResult);
 
         customerRepository.Add(customer);
         await customerRepository.UnitOfWork.Commit();
 
-        OperationResult.SetData(new CustomerCreatedDto { Id = customer.Id });
+        Result.SetData(new CustomerCreatedDto { Id = customer.Id });
 
-        return OperationResult;
+        return Result;
     }
+
+    public Result<CustomerCreatedDto> Result { get; } = new();
 
     public bool ValidateInput(NewCustomerDto request)
     {

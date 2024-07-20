@@ -1,21 +1,21 @@
 ﻿using Lab.Core.Commons.Communication;
+using Lab.Core.Commons.UseCases;
 using Lab.Customers.Application.DTOs.Outputs;
 using Lab.Customers.Application.Interfaces;
 using Lab.Customers.Domain.Repositories;
 
 namespace Lab.Customers.Application.UseCases;
 
-public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCustomerUseCase
+public class GetCustomerUseCase(ICustomerRepository customerRepository)
+    : IGetCustomerUseCase, IUseCase<Guid, Result<CustomerDto?>>
 {
-    public IOperationResult<CustomerDto?> OperationResult { get; } = Result.Create<CustomerDto?>();
-
-    public async Task<IOperationResult<CustomerDto?>> Execute(Guid id)
+    public async Task<Result<CustomerDto?>> Handle(Guid id)
     {
         var customers = await customerRepository.GetByIdAsync(id);
 
         if (customers is null) return null;
 
-        OperationResult.SetData(new CustomerDto
+        Result.SetData(new CustomerDto
         {
             Id = customers.Id,
             Name = customers.Name.ToString(),
@@ -23,8 +23,10 @@ public class GetCustomerUseCase(ICustomerRepository customerRepository) : IGetCu
             BirthDate = customers.BirthDate
         });
 
-        return OperationResult;
+        return Result;
     }
+
+    public Result<CustomerDto?> Result { get; } = new();
 
     public bool ValidateInput(Guid request)
     {

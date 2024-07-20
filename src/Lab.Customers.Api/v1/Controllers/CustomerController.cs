@@ -19,28 +19,28 @@ public class CustomerController(
     [HttpPost]
     public async Task<IActionResult> Create(NewCustomerDto newCustomer)
     {
-        var result = await createCustomerUseCase.Execute(newCustomer);
+        var result = await createCustomerUseCase.Handle(newCustomer);
 
-        if (result.HasErrors())
+        if (!result.IsSuccess)
         {
-            AddErrors(result.GetErrors());
+            AddErrors(result.Errors);
             return BadRequestDefault();
         }
 
-        return Created($"{result.GetData().Id}", result.GetData());
+        return Created($"{result.Data.Id}", result.Data);
     }
 
     [HttpGet("{id}")]
     public async Task<IActionResult> Get(Guid id)
     {
-        var customer = await getCustomerUseCase.Execute(id);
+        var customer = await getCustomerUseCase.Handle(id);
         return customer is null ? NotFound() : Ok(customer);
     }
 
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] QueryCustomerDto query)
     {
-        var result = await listCustomerUseCase.Execute(query);
+        var result = await listCustomerUseCase.Handle(query);
         return Ok(result);
     }
 
@@ -49,11 +49,11 @@ public class CustomerController(
     {
         if (id != updateCustomer.Id) return BadRequest("The consumer id is invalid.");
 
-        var result = await updateCustomerUseCase.Execute(updateCustomer);
+        var result = await updateCustomerUseCase.Handle(updateCustomer);
 
-        if (result.HasErrors())
+        if (!result.IsSuccess)
         {
-            AddErrors(result.GetErrors());
+            AddErrors(result.Errors);
             return BadRequestDefault();
         }
 
@@ -63,11 +63,11 @@ public class CustomerController(
     [HttpDelete("{id}")]
     public async Task<IActionResult> Delete(Guid id)
     {
-        var result = await deleteCustomerUseCase.Execute(id);
+        var result = await deleteCustomerUseCase.Handle(id);
 
-        if (result.HasErrors())
+        if (!result.IsSuccess)
         {
-            AddErrors(result.GetErrors());
+            AddErrors(result.Errors);
             return BadRequestDefault();
         }
 

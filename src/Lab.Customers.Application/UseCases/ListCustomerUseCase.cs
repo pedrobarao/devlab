@@ -1,19 +1,16 @@
 ﻿using Lab.Core.Commons.Communication;
+using Lab.Core.Commons.UseCases;
 using Lab.Customers.Application.DTOs.Inputs;
 using Lab.Customers.Application.DTOs.Outputs;
 using Lab.Customers.Application.Interfaces;
 using Lab.Customers.Domain.Repositories;
-using OpenTelemetry.Trace;
 
 namespace Lab.Customers.Application.UseCases;
 
-public class ListCustomerUseCase(ICustomerRepository customerRepository, TracerProvider tracer)
-    : IListCustomerUseCase
+public class ListCustomerUseCase(ICustomerRepository customerRepository)
+    : IListCustomerUseCase, IUseCase<QueryCustomerDto, Result<PagedResult<CustomerDto>>>
 {
-    public IOperationResult<PagedResult<CustomerDto>> OperationResult { get; } =
-        Result.Create<PagedResult<CustomerDto>>();
-
-    public async Task<IOperationResult<PagedResult<CustomerDto>>> Execute(QueryCustomerDto query)
+    public async Task<Result<PagedResult<CustomerDto>>> Handle(QueryCustomerDto query)
     {
         var pagedCustomers = await customerRepository.ListPagedAsync(query.PageSize, query.PageIndex, query.Filter);
 
@@ -25,10 +22,12 @@ public class ListCustomerUseCase(ICustomerRepository customerRepository, TracerP
             Cpf = p.Cpf.Number
         });
 
-        OperationResult.SetData(pagedCustomersDto);
+        Result.SetData(pagedCustomersDto);
 
-        return OperationResult;
+        return Result;
     }
+
+    public Result<PagedResult<CustomerDto>> Result { get; } = new();
 
     public bool ValidateInput(QueryCustomerDto request)
     {

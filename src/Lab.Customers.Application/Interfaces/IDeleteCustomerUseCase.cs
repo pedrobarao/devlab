@@ -1,7 +1,8 @@
-﻿using Lab.Core.Commons.UseCases;
+﻿using Lab.Core.Commons.Communication;
 
 namespace Lab.Customers.Application.Interfaces;
 
-public interface IDeleteCustomerUseCase : IUseCase<Guid>
+public interface IDeleteCustomerUseCase
 {
+    Task<Result> Handle(Guid id);
 }

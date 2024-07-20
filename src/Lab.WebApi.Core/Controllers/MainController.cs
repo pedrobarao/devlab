@@ -31,23 +31,23 @@ public abstract class MainController : ControllerBase
         return ResponseDefault();
     }
 
-    protected ActionResult ResponseDefault<T>(OperationResult<T>? result)
+    protected ActionResult ResponseDefault<T>(Result<T>? result)
     {
         HasErrors(result);
-        return ResponseDefault(result.GetData());
+        return ResponseDefault(result.Data);
     }
 
-    protected ActionResult ResponseDefault(OperationResult? result)
+    protected ActionResult ResponseDefault(Result? result)
     {
         HasErrors(result);
         return ResponseDefault();
     }
 
-    protected bool HasErrors(OperationResult? result)
+    protected bool HasErrors(Result? result)
     {
-        if (result is null || !result.GetErrors().Any()) return false;
+        if (result is null || !result.Errors.Any()) return false;
 
-        foreach (var message in result.GetErrors()) AddError(message);
+        foreach (var message in result.Errors) AddError(message);
 
         return true;
     }

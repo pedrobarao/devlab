@@ -1,6 +1,6 @@
 ﻿namespace Lab.Core.Commons.Communication;
 
-public static class PagedResultExtensions
+public static class PagedResultHandler
 {
     public static PagedResult<TOutput> MapItems<TInput, TOutput>(this PagedResult<TInput> pagedResult,
         Func<TInput, TOutput> converter) where TInput : class where TOutput : class
