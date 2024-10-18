@@ -2,17 +2,11 @@
 
 public class Failure
 {
-    public Failure(string errorMessage, string ruleName, string entityName)
+    public Failure(string errorMessage, string ruleName = null!, string entityName = null!)
     {
         ErrorMessage = errorMessage;
         RuleName = ruleName;
         EntityName = entityName;
-    }
-
-    public Failure(string errorMessage, string ruleName)
-    {
-        ErrorMessage = errorMessage;
-        RuleName = ruleName;
     }
 
     public string ErrorMessage { get; set; }

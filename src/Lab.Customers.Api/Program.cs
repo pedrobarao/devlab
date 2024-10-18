@@ -6,7 +6,6 @@ using Lab.Telemetry.Loggers;
 using OpenTelemetry.Exporter;
 
 var builder = WebApplication.CreateBuilder(args);
-
 builder.Services.AddApiConfig(builder.Configuration);
 
 var appSettings = builder.Configuration.Get<AppSettings>();
